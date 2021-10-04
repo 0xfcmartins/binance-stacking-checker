@@ -1,2 +1,3 @@
-# binance-stacking-checker
-Python app to check assets stacking projects on Binance
+# Check binance available stacking projects
+
+* Python script to check assets stacking projects on Binance

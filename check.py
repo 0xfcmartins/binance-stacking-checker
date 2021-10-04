@@ -3,13 +3,16 @@ import time
 import requests
 
 from datetime import datetime
+
 from env.config import API_PUBLIC
 from env.config import TS_FORMAT
 from env.config import INTERVAL
 from env.config import Colors
 
+from utils.writer import log
 
-def validate(asset):
+
+def check(asset):
     response = requests.request("GET", API_PUBLIC + "pageSize=1&pageIndex=1&status=ALL&asset=" + asset)
     projects = response.json()['data'][0]['projects']
 
@@ -25,7 +28,7 @@ def validate(asset):
 
         remaining_calc = f"{Colors.VALUES}" + str(up_limit - purchased) + f"{Colors.END}"
 
-        on_sale = 'For sale:' + f"{Colors.VALUES}" + project['upLimit'] + f"{Colors.END}"
+        on_sale = 'Sale:' + f"{Colors.VALUES}" + project['upLimit'] + f"{Colors.END}"
         sold = ' Sold:' + f"{Colors.VALUES}" + project['purchased'] + f"{Colors.END}"
         remaining = ' Remaining:' + remaining_calc
 
@@ -35,10 +38,14 @@ def validate(asset):
 
 def run():
     while 1:
-        validate("DOT")
+        check("DOT")
+        check("SAND")
+        check("ONE")
+        check("ADA")
         print()
         time.sleep(INTERVAL)
 
 
 if __name__ == "__main__":
+    log()
     run()
