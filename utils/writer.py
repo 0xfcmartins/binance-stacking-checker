@@ -1,14 +1,17 @@
 import sys
 
+from datetime import datetime
+from env.config import LOG_FORMAT
 
-def log():
+
+def init_log():
     sys.stdout = Logger()
 
 
 class Logger(object):
     def __init__(self):
         self.terminal = sys.stdout
-        self.log = open("report.log", "a")
+        self.log = open("report/" + datetime.now().strftime(LOG_FORMAT) + ".log", "a")
 
     def write(self, message):
         self.terminal.write(message)
