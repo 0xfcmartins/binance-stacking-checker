@@ -1,11 +1,19 @@
 import sys
 
 from datetime import datetime
-from env.config import LOG_FORMAT
+from env.config import LOG_FORMAT, Colors
 
 
 def init_log():
     sys.stdout = Logger()
+
+
+def replacer(message):
+    for a in dir(Colors):
+        if not a.startswith('__'):
+            message = message.replace(getattr(Colors,a), '')
+
+    return message
 
 
 class Logger(object):
@@ -15,7 +23,7 @@ class Logger(object):
 
     def write(self, message):
         self.terminal.write(message)
-        self.log.write(message)
+        self.log.write(replacer(message))
 
     def flush(self):
         pass

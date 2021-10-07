@@ -1,6 +1,7 @@
 import decimal
 import time
 import requests
+import os
 
 from datetime import datetime
 
@@ -35,6 +36,13 @@ def check(asset):
                 print(time_stamp, asset, stack_duration, open_tag, on_sale, sold, remaining)
 
 
+def clear():
+    command = 'clear'
+    if os.name in ('nt', 'dos'):
+        command = 'cls'
+    os.system(command)
+
+
 def run(check_assets):
     while True:
         try:
@@ -42,6 +50,7 @@ def run(check_assets):
                 check(i)
 
             time.sleep(INTERVAL)
+            clear()
         except KeyboardInterrupt:
             break
 
@@ -49,6 +58,6 @@ def run(check_assets):
 if __name__ == "__main__":
     print("Input the assets tags separated by space:")
     assets = input()
-    print("Starting...")
+    clear()
     init_log()
     run(assets)
