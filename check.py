@@ -1,16 +1,26 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+    Binance stacking projects availability checker
+    @author Francisco Martins francisco.drive.7@gmail.com
+"""
+
 import decimal
 import time
 import requests
 import os
 
 from datetime import datetime
-
 from env.config import API_PUBLIC
 from env.config import TS_FORMAT
 from env.config import INTERVAL
 from env.config import Colors
+from env.config import duration_color
 
 from utils.writer import init_log
+
+__author__ = "Francisco Martins"
 
 
 def check(asset):
@@ -20,9 +30,10 @@ def check(asset):
             is_sold_out = project['sellOut']
             up_limit = decimal.Decimal(project['upLimit'])
             purchased = decimal.Decimal(project['purchased'])
+            duration = project['duration']
 
+            stack_duration = "for " + duration_color(duration, duration) + " days stacking"
             asset = '{:5}'.format(f"{Colors.ASSET}" + project['asset'] + f"{Colors.END}")
-            stack_duration = "for " + f"{Colors.DURATION}" + project['duration'] + f"{Colors.END}" + " days stacking"
             time_stamp = f"{Colors.WARNING}" + datetime.now().strftime(TS_FORMAT) + f"{Colors.END}"
             open_tag = "its " + f"{Colors.TAG}OPEN" + f"{Colors.END}!"
 
@@ -50,7 +61,6 @@ def run(check_assets):
                 check(i)
 
             time.sleep(INTERVAL)
-            clear()
         except KeyboardInterrupt:
             break
 
