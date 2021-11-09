@@ -1,10 +1,20 @@
 import sys
+import os
 
 from datetime import datetime
-from env.config import LOG_FORMAT, Colors
+from utils.colors import LOG_FORMAT, Colors
+
+
+def validate_folder():
+    path = "report"
+    try:
+        os.mkdir(path)
+    except OSError:
+        print("Creation of the reports directory %s failed" % path)
 
 
 def init_log():
+    validate_folder()
     sys.stdout = Logger()
 
 

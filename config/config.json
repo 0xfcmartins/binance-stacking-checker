@@ -1,0 +1,22 @@
+{
+  "api": "https://www.binance.com/bapi/earn/v1/friendly/pos/union?",
+  "ts_format": "%d/%m/%Y %H:%M:%S",
+  "log_format": "%d%m%Y",
+  "inteval": 30,
+  "notification": {
+    "sms": [
+      {
+        "provider": "textbelt"
+      }
+    ],
+    "telegram": {
+      "telegram_base": "https://api.telegram.org/bot",
+      "bot_token": "",
+      "chats": [
+        {
+          "chat_id": ""
+        }
+      ]
+    }
+  }
+}

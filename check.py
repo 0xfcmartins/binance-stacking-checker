@@ -13,17 +13,17 @@ import os
 from datetime import datetime
 from requests import RequestException
 
-from env.config import API_PUBLIC
-from env.config import TS_FORMAT
-from env.config import INTERVAL
-from env.config import Colors
-from env.config import duration_color
+from utils.colors import API_PUBLIC
+from utils.colors import TS_FORMAT
+from utils.colors import INTERVAL
+from utils.colors import Colors
+from utils.colors import duration_color
 
 from utils.writer import init_log
 
 from utils.sms import notify, telegram
 
-phone = '+351913744226'
+phone = '<user_notification_number>'
 
 
 def check(asset):
