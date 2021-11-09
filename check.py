@@ -21,6 +21,10 @@ from env.config import duration_color
 
 from utils.writer import init_log
 
+from utils.sms import notify, telegram
+
+phone = '+351913744226'
+
 
 def check(asset):
     try:
@@ -45,7 +49,12 @@ def check(asset):
 
                 if not is_sold_out:
                     print(time_stamp, asset, stack_duration, open_tag, on_sale, sold, remaining)
+                    if duration == '90' or duration == '60':
+                        notify(asset, duration, phone)
+                    telegram(asset, duration)
+
     except RequestException as e:
+        print(e)
         time.sleep(120)
 
 
@@ -68,8 +77,11 @@ def run(check_assets):
 
 
 if __name__ == "__main__":
+    global phone_number
+
     print("Input the assets tags separated by space:")
     assets = input()
+
     clear()
     init_log()
     run(assets)

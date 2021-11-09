@@ -1,7 +1,7 @@
 API_PUBLIC = "https://www.binance.com/bapi/earn/v1/friendly/pos/union?"
 TS_FORMAT = "%d/%m/%Y %H:%M:%S"
 LOG_FORMAT = "%d%m%Y"
-INTERVAL = 1
+INTERVAL = 30
 
 
 class Colors:
