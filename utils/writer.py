@@ -2,7 +2,7 @@ import sys
 import os
 
 from datetime import datetime
-from utils.colors import LOG_FORMAT, Colors
+from utils.application import LOG_FORMAT, Colors
 
 
 def validate_folder():

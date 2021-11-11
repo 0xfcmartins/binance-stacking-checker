@@ -2,7 +2,7 @@
   "api": "https://www.binance.com/bapi/earn/v1/friendly/pos/union?",
   "ts_format": "%d/%m/%Y %H:%M:%S",
   "log_format": "%d%m%Y",
-  "inteval": 30,
+  "interval": 30,
   "notification": {
     "sms": [
       {

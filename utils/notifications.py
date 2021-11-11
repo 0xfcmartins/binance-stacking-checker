@@ -4,11 +4,11 @@ import hashlib
 from utils.writer import replacer
 
 # noinspection SpellCheckingInspection
-bot_token = ''
+telegram_bot = '2113591415:AAFHf5xi5HHFC707PZxMZzUfxAY8mnIoor8'
 telegram_base = 'https://api.telegram.org/bot'
-pro_mode = ''
+pro_mode = '5a1f0dc050c79dd3619a41afa277b188827271f3eMmkDsaQ11VoVOl36Z7Nco8EX'
 dev_key = 'textbelt'
-chat_id = ''
+chat_id = '-601509641'
 sent = {}
 
 
@@ -20,7 +20,7 @@ def notify(asset, duration, phone_number):
         resp = requests.post('https://textbelt.com/text', {
             'phone': phone_number,
             'message': message + ' OPEN on binance!',
-            'key': pro_mode
+            'key': dev_key
         })
         if resp.json()['success'] == 'False':
             print('SMS notification sent!')
@@ -30,5 +30,12 @@ def notify(asset, duration, phone_number):
 
 def telegram(asset, duration):
     message = '🚨🚨 ' + replacer(asset) + ' 🚨🚨 is OPEN ' + replacer(duration) + ' days on Binance!'
-    send_text = telegram_base + bot_token + '/sendMessage?chat_id=' + chat_id + '&parse_mode=Markdown&text=' + message
+    send_text = telegram_base + telegram_bot + '/sendMessage?chat_id=' + chat_id + '&parse_mode=Markdown&text=' + message
     requests.get(send_text)
+
+
+def on(assets):
+    message = 'The application is ONLINE, watching for ' + assets
+    send_text = telegram_base + telegram_bot + '/sendMessage?chat_id=' + chat_id + '&parse_mode=Markdown&text=' + message
+    requests.get(send_text)
+

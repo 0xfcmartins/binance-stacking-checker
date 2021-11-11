@@ -13,15 +13,15 @@ import os
 from datetime import datetime
 from requests import RequestException
 
-from utils.colors import API_PUBLIC
-from utils.colors import TS_FORMAT
-from utils.colors import INTERVAL
-from utils.colors import Colors
-from utils.colors import duration_color
+from utils.application import API_PUBLIC
+from utils.application import TS_FORMAT
+from utils.application import INTERVAL
+from utils.application import Colors
+from utils.application import duration_color
 
 from utils.writer import init_log
 
-from utils.sms import notify, telegram
+from utils.notifications import notify, telegram, on
 
 phone = '<user_notification_number>'
 
@@ -49,9 +49,10 @@ def check(asset):
 
                 if not is_sold_out:
                     print(time_stamp, asset, stack_duration, open_tag, on_sale, sold, remaining)
-                    if duration == '90' or duration == '60':
+                    if duration == '90':
                         notify(asset, duration, phone)
-                    telegram(asset, duration)
+                    if duration == '90' or duration == '60':
+                        telegram(asset, duration)
 
     except RequestException as e:
         print(e)
@@ -81,6 +82,8 @@ if __name__ == "__main__":
 
     print("Input the assets tags separated by space:")
     assets = input()
+
+    on(assets)
 
     clear()
     init_log()
