@@ -23,7 +23,7 @@ from utils.writer import init_log
 
 from utils.notifications import notify, telegram, on
 
-phone = '<user_notification_number>'
+phone = ''
 
 
 def check(asset):

@@ -4,11 +4,11 @@ import hashlib
 from utils.writer import replacer
 
 # noinspection SpellCheckingInspection
-telegram_bot = '2113591415:AAFHf5xi5HHFC707PZxMZzUfxAY8mnIoor8'
+telegram_bot = '2113591415:'
 telegram_base = 'https://api.telegram.org/bot'
-pro_mode = '5a1f0dc050c79dd3619a41afa277b188827271f3eMmkDsaQ11VoVOl36Z7Nco8EX'
+pro_mode = ''
 dev_key = 'textbelt'
-chat_id = '-601509641'
+chat_id = '-'
 sent = {}
 
 
